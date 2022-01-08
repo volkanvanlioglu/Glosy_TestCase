@@ -1,0 +1,18 @@
+﻿@model Glosy_TestCase.Models.Classes.Categories
+@{
+    ViewBag.Title = "GetCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-4">@Model.Name Kategori Bilgileri</h2>
+<hr />
+@using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.ID)
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+    <br>
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br>
+    <button class="btn btn-success">Güncelle</button>
+}

@@ -1,0 +1,47 @@
+﻿@model Glosy_TestCase.Models.Classes.News
+@{
+    ViewBag.Title = "GetNews";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-4">Haber Bilgisi</h2>
+<hr />
+
+@using (Html.BeginForm("UpdateNews", "Admin", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.ID)
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(x => x.CategoryID)
+    @Html.TextBoxFor(x => x.CategoryID, new { @class = "form-control" })
+    <br>
+
+    @Html.LabelFor(x => x.UserID)
+    @Html.TextBoxFor(x => x.UserID, new { @class = "form-control", @readonly = "readonly" })
+    <br>
+
+    @Html.LabelFor(x => x.Title)
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br>
+
+    @Html.LabelFor(x => x.Description)
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br>
+
+    @Html.LabelFor(x => x.Detail)
+    @Html.TextBoxFor(x => x.Detail, new { @class = "form-control" })
+    <br>
+
+    @Html.LabelFor(x => x.Link)
+    @Html.TextBoxFor(x => x.Link, new { @class = "form-control" })
+    <br>
+
+    @Html.LabelFor(x => x.Image)
+    @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+    <br>
+
+    @Html.LabelFor(x => x.Date)
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+    <br>
+    <button class="btn btn-success">Güncelle</button>
+}

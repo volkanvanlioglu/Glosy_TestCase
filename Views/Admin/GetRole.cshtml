@@ -1,0 +1,18 @@
+﻿@model Glosy_TestCase.Models.Classes.Roles
+@{
+    ViewBag.Title = "GetRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-4">@Model.Name Rol Bilgileri</h2>
+<hr />
+@using (Html.BeginForm("UpdateRole", "Admin", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.ID)
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+    <br>
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br>
+    <button class="btn btn-success">Güncelle</button>
+}

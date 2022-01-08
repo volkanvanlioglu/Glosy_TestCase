@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    </head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(Session[0].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Admin Paneli", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Haberler", "NewsList", "Admin")</li>
+                    <li>@Html.ActionLink("Kategoriler", "CategoryList", "Admin")</li>
+                    <li>@Html.ActionLink("Kullanıcılar", "UserList", "Admin")</li>
+                    <li>@Html.ActionLink("Kullanıcı Rolleri", "RoleList", "Admin")</li>
+                    <li>@Html.ActionLink("Çıkış", "Logout", "Login")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $('#myDataTable').DataTable({
+            ordering: false,
+            searching: true,
+            lengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]],
+            createdRow: (row, data, index) => {
+                if (data[data.length - 1].replace(/[\$,]/g, '') * 1 > 150000) {
+                    $('td', row).eq(data.length - 1).addClass('text-success');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

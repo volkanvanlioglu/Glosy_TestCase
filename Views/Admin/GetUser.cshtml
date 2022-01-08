@@ -1,0 +1,24 @@
+﻿@model Glosy_TestCase.Models.Classes.Users
+@{
+    ViewBag.Title = "GetUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-4">@Model.Username Kullanıcı Bilgileri</h2>
+<hr />
+@using (Html.BeginForm("UpdateUser", "Admin", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.ID)
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+    <br>
+    @Html.LabelFor(x => x.RoleID)
+    @Html.TextBoxFor(x => x.RoleID, new { @class = "form-control", @readonly = "readonly" })
+    <br>
+    @Html.LabelFor(x => x.Username)
+    @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+    <br>
+    @Html.LabelFor(x => x.Password)
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    <br>
+    <button class="btn btn-success">Güncelle</button>
+}

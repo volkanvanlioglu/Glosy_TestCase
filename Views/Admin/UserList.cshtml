@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mb-4">Kullanıcı Listesi</h2>
+<table class="table table-bordered mt-3" style="width:100%;" id="myDataTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kullanıcı Rolü</th>
+            <th>Kullanıcı Adı</th>
+            <th>Parola</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@ViewBag.Roles[item.RoleID-1].Name</td>
+                <td>@item.Username</td>
+                <td>@item.Password</td>
+                <td><a href="/Admin/GetUser/@item.ID" class="btn btn-primary">Güncelle</a></td>
+                <td><a href="/Admin/DeleteUser/@item.ID" class="btn btn-danger">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

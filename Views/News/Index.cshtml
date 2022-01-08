@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />*@
+
+<h2 class="mb-4">Haberler</h2>
+<table class="table table-bordered mt-3" style="width:100%;" id="myDataTable">
+    <thead>
+        <tr>
+            <th>Haber ID</th>
+            <th>Kategori</th>
+            <th>Başlık</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@ViewBag.Categories[item.CategoryID].Name</td>
+                <td><a href="/News/Detail/@item.ID">@item.Title</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $('#myDataTable').DataTable({
+        ordering: true,
+        searching: true,
+        lengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]],
+        createdRow: (row, data, index) => {
+            if (data[data.length - 1].replace(/[\$,]/g, '') * 1 > 150000) {
+                $('td', row).eq(data.length - 1).addClass('text-success');
+            }
+        }
+    });
+</script>
